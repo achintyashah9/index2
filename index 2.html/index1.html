@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitPro+ | Login / Signup</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen">
+  <!-- Auth Card -->
+  <div class="card rounded-xl p-8 w-full max-w-md">
+    <h2 class="text-3xl font-bold mb-6 text-center">Welcome to FitPro+</h2>
+    <div class="flex space-x-4 mb-6 justify-center">
+      <button id="loginBtn" class="font-semibold px-4 py-2 rounded bg-indigo-600 hover:bg-indigo-700">Login</button>
+      <button id="signupBtn" class="font-semibold px-4 py-2 rounded bg-gray-700 hover:bg-gray-800">Signup</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="space-y-4">
+      <input type="email" placeholder="Email" class="p-3 w-full text-black rounded" required>
+      <input type="password" placeholder="Password" class="p-3 w-full text-black rounded" required>
+      <button type="submit" class="bg-indigo-600 w-full py-3 rounded font-bold hover:bg-indigo-700">Login</button>
+    </form>
+
+    <!-- Signup Form -->
+    <form id="signupForm" class="space-y-4 hidden">
+      <input type="text" placeholder="Full Name" class="p-3 w-full text-black rounded" required>
+      <input type="email" placeholder="Email" class="p-3 w-full text-black rounded" required>
+      <input type="password" placeholder="Password" class="p-3 w-full text-black rounded" required>
+      <input type="password" placeholder="Confirm Password" class="p-3 w-full text-black rounded" required>
+      <button type="submit" class="bg-indigo-600 w-full py-3 rounded font-bold hover:bg-indigo-700">Signup</button>
+    </form>
+  </div>
+
+  <script>
+    gsap.from(".card", { duration: 1, opacity: 0, y: -20 });
+
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+
+    loginBtn.addEventListener('click', () => {
+      loginForm.classList.remove('hidden');
+      signupForm.classList.add('hidden');
+      loginBtn.classList.add('bg-indigo-600');
+      signupBtn.classList.remove('bg-indigo-600');
+      signupBtn.classList.add('bg-gray-700');
+    });
+
+    signupBtn.addEventListener('click', () => {
+      signupForm.classList.remove('hidden');
+      loginForm.classList.add('hidden');
+      signupBtn.classList.add('bg-indigo-600');
+      loginBtn.classList.remove('bg-indigo-600');
+      loginBtn.classList.add('bg-gray-700');
+    });
+  </script>
+</body>
+
+</html>

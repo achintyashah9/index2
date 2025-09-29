@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitPro+ | Fitness Web App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        body { background-color: #0a0a0a; color: white; }
+        .card:hover { transform: scale(1.05); transition: 0.3s; }
+    </style>
+</head>
+
+<body class="font-sans">
+    <header class="bg-gradient-to-r from-blue-800 to-indigo-900 p-5 text-center">
+        <h1 class="text-4xl font-bold animate__animated animate__fadeInDown">FitPro+ Fitness Web App</h1>
+        <nav class="mt-4 space-x-6">
+            <a href="#dashboard" class="hover:underline">Dashboard</a>
+            <a href="#workouts" class="hover:underline">Workouts</a>
+            <a href="#goal" class="hover:underline">Goals</a>
+            <a href="#meals" class="hover:underline">Meal Plans</a>
+        </nav>
+    </header>
+
+    <section id="dashboard" class="p-10 animate__animated animate__fadeIn">
+        <h2 class="text-3xl font-semibold mb-4">🏠 Dashboard</h2>
+        <p>Welcome to FitPro+! Your personal web-based fitness assistant.</p>
+    </section>
+
+    <section id="workouts" class="p-10 bg-gray-900 animate__animated animate__fadeIn">
+        <h2 class="text-3xl font-semibold mb-4">🏋️ Workout Library</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="card bg-gray-800 p-4 rounded-lg shadow-md">
+                <img src="https://via.placeholder.com/300x200?text=Push+Ups" alt="Push Ups" class="rounded mb-2">
+                <h3 class="text-xl">Push Ups</h3>
+            </div>
+            <div class="card bg-gray-800 p-4 rounded-lg shadow-md">
+                <img src="https://via.placeholder.com/300x200?text=Squats" alt="Squats" class="rounded mb-2">
+                <h3 class="text-xl">Squats</h3>
+            </div>
+            <div class="card bg-gray-800 p-4 rounded-lg shadow-md">
+                <img src="https://via.placeholder.com/300x200?text=Rows" alt="Rows" class="rounded mb-2">
+                <h3 class="text-xl">Dumbbell Rows</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="goal" class="p-10 animate__animated animate__fadeIn">
+        <h2 class="text-3xl font-semibold mb-4">🎯 Goal & Calorie Tracker</h2>
+        <form id="goalForm" class="space-y-4">
+            <input type="number" id="currentWeight" placeholder="Current Weight (kg)" class="p-2 w-full text-black rounded">
+            <input type="number" id="targetWeight" placeholder="Target Weight (kg)" class="p-2 w-full text-black rounded">
+            <button type="submit" class="bg-indigo-700 px-4 py-2 rounded">Calculate</button>
+        </form>
+        <p id="result" class="mt-4"></p>
+    </section>
+
+    <section id="meals" class="p-10 bg-gray-900 animate__animated animate__fadeIn">
+        <h2 class="text-3xl font-semibold mb-4">🍽️ Meal Plan</h2>
+        <p>Customized meal plan based on your calories will show here (backend coming next step!)</p>
+    </section>
+
+    <footer class="text-center p-5 bg-gradient-to-r from-blue-800 to-indigo-900 mt-10">
+        <p>&copy; 2024 FitPro+. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('goalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const current = parseInt(document.getElementById('currentWeight').value);
+            const target = parseInt(document.getElementById('targetWeight').value);
+            const diff = Math.abs(target - current);
+            let calories = 0;
+
+            if (target > current) {
+                calories = 2500 + (diff * 100);
+                document.getElementById('result').innerText = `To gain weight, you need ~${calories} kcal/day.`;
+            } else if (target < current) {
+                calories = 2000 - (diff * 80);
+                document.getElementById('result').innerText = `To lose weight, you need ~${calories} kcal/day.`;
+            } else {
+                document.getElementById('result').innerText = `You're at your goal weight! Maintain ~2200 kcal/day.`;
+            }
+        });
+    </script>
+</body>
+
+</html>
